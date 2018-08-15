@@ -38,5 +38,10 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         q.setParameter("p",p);
         return q.getResultList().size()>0;
     }
+
+    @Override
+    public boolean checklogin(String u, String p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

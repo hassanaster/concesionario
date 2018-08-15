@@ -31,5 +31,7 @@ public interface AccountFacadeLocal {
     int count();
 
     boolean checkLogin(String u, String p);
+
+    public boolean checklogin(String u, String p);
     
 }

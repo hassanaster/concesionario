@@ -217,5 +217,9 @@ public class Account implements Serializable {
     public String toString() {
         return "com.udea.entity.Account[ id=" + id + " ]";
     }
+
+    public void setEmail(String parameter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
