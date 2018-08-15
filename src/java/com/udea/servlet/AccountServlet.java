@@ -6,8 +6,11 @@
 package com.udea.servlet;
 
 import com.udea.ejb.AccountFacadeLocal;
+import com.udea.entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,19 +37,52 @@ public class AccountServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+         response.setContentType("text/html;charset=UTF-8");
+        try{
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AccountServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AccountServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+            String action = request.getParameter("action");
+            String url = "index.jsp";
+            if("list".equals(action)) {
+                List<Account> findAll=accountFacade.findAll();
+                request.getSession().setAttribute("accounts", findAll);
+                url = "listAccounts.jsp";
+            }else if ("login".equals(action)){
+                String u = request.getParameter("username");
+                String p = request.getParameter("passqord");
+                boolean checklogin = accountFacade.checklogin(u, p);
+                    if (checklogin){
+                        request.getSession().setAttribute("login", u);
+                        url = "manager.jsp";
+                    }else{
+                        url = "login.jsp?error=1";
+                    }
+                }else if("insert".equals(action)){
+                    Account a = new Account();
+                    a.setUsername(request.getParameter("username"));
+                    a.setPassword(request.getParameter("password"));
+                    a.setNombres(request.getParameter("nombres"));
+                    a.setApellidos(request.getParameter("apellidos"));
+                    a.setCorreo(request.getParameter("correo"));
+                    a.setDireccion(request.getParameter("dirreccion"));
+                    a.setTelefono(request.getParameter("telefono"));
+                    a.setRol(request.getParameter("rol"));
+                    accountFacade.create(a);
+                    url = "login.jsp";
+                }else if ("delete".equals(action)){
+                    String id = request.getParameter("id");
+                    Account a = accountFacade.find(Integer.valueOf(id));
+                    accountFacade.remove(a);
+                    url = "AccountServlet?action=List";
+                    
+                }else if("logout".equals(action)){
+                    request.getSession().removeAttribute("login");
+                    url = "login.jsp";
+                }
+                response.sendRedirect(url);
+                
+            }finally{
+            out.close();
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
