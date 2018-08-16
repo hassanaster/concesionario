@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Concesionario/src/java/com/udea/servlet/VehiculoServlet.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/Concesionario/src/java/com/udea/servlet/AccountServlet.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Concesionario/src/java/com/udea/servlet/VehiculosServlet.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Concesionario/src/java/com/udea/ejb/VehiculoFacade.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Concesionario/src/java/com/udea/ejb/VehiculoFacadeLocal.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Concesionario/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/Concesionario/src/java/com/udea/servlet/VentasServlet.java</file>
         </group>
     </open-files>

@@ -6,8 +6,10 @@
 package com.udea.servlet;
 
 import com.udea.ejb.VehiculoFacadeLocal;
+import com.udea.entity.Vehiculo;
 import java.io.IOException;
-import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,18 +37,35 @@ public class VehiculoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try{
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet VehiculoServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet VehiculoServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+            String action = request.getParameter("action");
+            String url = "index.jsp";
+            if("list".equals(action)) {
+                List<Vehiculo> findAll=vehiculoFacade.findAll();
+                request.getSession().setAttribute("accounts", findAll);
+                url = "listAccounts.jsp";
+            }else if("insert".equals(action)){
+                    Vehiculo a = new Vehiculo();
+                    a.setModelo(request.getParameter("modelo"));
+                    a.setMarca(request.getParameter("marca"));
+                    a.setPlaca(request.getParameter("placa"));
+                    a.setDescripcion(request.getParameter("descripcion"));
+                    a.setFoto(request.getParameter("foto"));
+                    a.setPrecio(Integer.parseInt((request.getParameter("precio"))));
+                    vehiculoFacade.create(a);
+                    url = "vehiculoNuevo.jsp";
+                }else if ("delete".equals(action)){
+                    String id = request.getParameter("id");
+                    Vehiculo a = vehiculoFacade.find(Integer.valueOf(id));
+                    vehiculoFacade.remove(a);
+                    url = "VehiculoServlet?action=List";
+                }
+                response.sendRedirect(url);
+                
+            }finally{
+            out.close();
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
