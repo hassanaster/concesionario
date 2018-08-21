@@ -24,7 +24,7 @@
             <font color="red">Usuario inválido. Intentelo de nuevo</font>
         </c:if>
         <div class="container well">
-            <h1>Contact information</h1>
+            <h1>Login</h1>
             <form action="AccountServlet?action=login" method="post">
                 <table>
                     <tr>

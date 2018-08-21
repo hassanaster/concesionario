@@ -35,10 +35,40 @@
                             <input type="password" placeholder="Enter Password" class="form-control" name="password" required=""/>
                         </th>
                     </tr>
-                    <tr>
-                        <th> <label><b>Email:</b></label> </th>
+                     <tr>
+                        <th> <label><b>Nombres:</b></label> </th>
                         <th>
-                            <input type="email" placeholder="Enter Email" class="form-control" name="email" required=""/>
+                            <input type="text" placeholder="Enter name" class="form-control" name="nombres" required=""/>
+                        </th>
+                    </tr>
+                     <tr>
+                        <th> <label><b>Apellidos:</b></label> </th>
+                        <th>
+                            <input type="text" placeholder="Enter last name" class="form-control" name="apellidos" required=""/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th> <label><b>Correo:</b></label> </th>
+                        <th>
+                            <input type="email" placeholder="Enter Email" class="form-control" name="correo" required=""/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th> <label><b>Dirección:</b></label> </th>
+                        <th>
+                            <input type="text" placeholder="Enter Adress" class="form-control" name="direccion" required=""/>
+                        </th>
+                    </tr>
+                     <tr>
+                        <th> <label><b>Celular:</b></label> </th>
+                        <th>
+                            <input type="number" placeholder="Enter phone" class="form-control" name="celular" required=""/>
+                        </th>
+                    </tr>
+                     <tr>
+                        <th> <label><b>Rol:</b></label> </th>
+                        <th>
+                            <input type="text" placeholder="Enter rol" class="form-control" name="rol" required=""/>
                         </th>
                     </tr>
                     <div class="break"></div>

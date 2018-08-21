@@ -48,7 +48,7 @@ public class AccountServlet extends HttpServlet {
                 url = "listAccounts.jsp";
             }else if ("login".equals(action)){
                 String u = request.getParameter("username");
-                String p = request.getParameter("passqord");
+                String p = request.getParameter("password");
                 boolean checklogin = accountFacade.checklogin(u, p);
                     if (checklogin){
                         request.getSession().setAttribute("login", u);
@@ -60,12 +60,7 @@ public class AccountServlet extends HttpServlet {
                     Account a = new Account();
                     a.setUsername(request.getParameter("username"));
                     a.setPassword(request.getParameter("password"));
-                    a.setNombres(request.getParameter("nombres"));
-                    a.setApellidos(request.getParameter("apellidos"));
                     a.setCorreo(request.getParameter("correo"));
-                    a.setDireccion(request.getParameter("dirreccion"));
-                    a.setTelefono(request.getParameter("telefono"));
-                    a.setRol(request.getParameter("rol"));
                     accountFacade.create(a);
                     url = "login.jsp";
                 }else if ("delete".equals(action)){
@@ -73,7 +68,6 @@ public class AccountServlet extends HttpServlet {
                     Account a = accountFacade.find(Integer.valueOf(id));
                     accountFacade.remove(a);
                     url = "AccountServlet?action=List";
-                    
                 }else if("logout".equals(action)){
                     request.getSession().removeAttribute("login");
                     url = "login.jsp";

@@ -31,7 +31,7 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     }
 
     @Override
-    public boolean checkLogin(String u, String p) {
+    public boolean checklogin(String p, String u) {
          Query q = em.createQuery("select a from Account a " 
                 + "Where a.username=:u and a.password=:p");
         q.setParameter("u",u);
@@ -39,9 +39,4 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         return q.getResultList().size()>0;
     }
 
-    @Override
-    public boolean checklogin(String u, String p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
